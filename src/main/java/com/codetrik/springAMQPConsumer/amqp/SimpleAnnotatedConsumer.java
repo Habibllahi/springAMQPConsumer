@@ -4,7 +4,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AnnotatedConsumer {
+public class SimpleAnnotatedConsumer {
 
     @RabbitListener(queues = {"${com.codetrik.amqp.queue}"})
     public void consume(String message){

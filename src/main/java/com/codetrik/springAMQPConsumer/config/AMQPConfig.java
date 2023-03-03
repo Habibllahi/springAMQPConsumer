@@ -1,6 +1,6 @@
 package com.codetrik.springAMQPConsumer.config;
 
-import com.codetrik.springAMQPConsumer.amqp.Consumer;
+import com.codetrik.springAMQPConsumer.amqp.SimpleConsumer;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
@@ -20,10 +20,10 @@ public class AMQPConfig {
     //This bean is necessary when not using @RabbitListener annotation in creating listener
     @Bean
     public SimpleMessageListenerContainer container(@Value("${com.codetrik.amqp.queue}") String queue, ConnectionFactory cf,
-                                                    Consumer consumer){
+                                                    SimpleConsumer simpleConsumer){
         var smlc = new SimpleMessageListenerContainer(cf);
         smlc.addQueueNames(queue);
-        smlc.setMessageListener(consumer);
+        smlc.setMessageListener(simpleConsumer);
         return smlc;
     }
 }

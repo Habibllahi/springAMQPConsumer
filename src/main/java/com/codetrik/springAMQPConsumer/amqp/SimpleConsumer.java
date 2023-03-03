@@ -7,7 +7,6 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * You need to register this component to a bean of SimpleMessageListenerContainer
@@ -16,9 +15,7 @@ import org.springframework.stereotype.Service;
 @Setter
 @RequiredArgsConstructor
 @Component
-public class Consumer implements MessageListener {
-    private final RabbitTemplate rabbitTemplate;
-
+public class SimpleConsumer implements MessageListener {
     @Override
     public void onMessage(Message message) {
         System.out.println("Consumer >> "+new String(message.getBody()));
